@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class MessageListener extends Thread {
 
     private ServerSocket server;
-    private int port = 9981;
+    private int port = 9981; //default port
     private WritableGUI gui;
 
     public MessageListener(WritableGUI gui, int port) {
@@ -40,9 +40,9 @@ public class MessageListener extends Thread {
             while ((clientSocket = server.accept()) != null) {
                 InputStream is = clientSocket.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String line = br.readLine();
-                if (line != null) {
-                    gui.write(line);
+                String reply = br.readLine();
+                if (reply != null) {
+                    gui.write("Re: " + reply);
                 }
             }
         } catch (IOException ex) {

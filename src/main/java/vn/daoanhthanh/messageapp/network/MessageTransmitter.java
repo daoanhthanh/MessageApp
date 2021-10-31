@@ -7,24 +7,30 @@ import java.util.logging.Logger;
 
 public class MessageTransmitter extends Thread {
 
-    String message, hostname;
-    int port;
+    private String message;
+    private String hostname;
+    private int port;
+    private WritableGUI gui;
 
     public MessageTransmitter() {
     }
 
-    public MessageTransmitter(String message, String hostname, int port) {
+    public MessageTransmitter(String message, String hostname, int port, WritableGUI gui) {
         this.message = message;
         this.hostname = hostname;
         this.port = port;
+        this.gui = gui;
     }
 
     @Override
     public void run() {
         try {
-            Socket s = new Socket(hostname, port);
-            s.getOutputStream().write(message.getBytes());
-            s.close();
+            Socket socket = new Socket(hostname, port);
+            socket.getOutputStream().write(message.getBytes());
+            if (message != null) {
+                gui.write("\t\tMe: " + message);
+            }
+            socket.close();
         } catch (IOException ex) {
             Logger.getLogger(MessageTransmitter.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
