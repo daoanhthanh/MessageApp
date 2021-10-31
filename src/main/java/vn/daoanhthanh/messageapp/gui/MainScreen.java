@@ -4,14 +4,17 @@ import java.awt.Cursor;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import vn.daoanhthanh.messageapp.network.MessageListener;
 import vn.daoanhthanh.messageapp.network.MessageTransmitter;
 import vn.daoanhthanh.messageapp.network.WritableGUI;
+import javax.swing.JLabel;
+import java.awt.event.KeyEvent;
 
-public class MainScreen extends javax.swing.JFrame implements WritableGUI {
+public class MainScreen extends JFrame implements WritableGUI {
 
     /**
      * Creates new form MainScreen
@@ -32,6 +35,7 @@ public class MainScreen extends javax.swing.JFrame implements WritableGUI {
         message = new javax.swing.JTextField();
         message.setHorizontalAlignment(SwingConstants.LEFT);
         sendButton = new javax.swing.JButton();
+        sendButton.setMnemonic(KeyEvent.VK_ENTER);
         sendButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         listenButton = new javax.swing.JButton();
         listenButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -51,7 +55,7 @@ public class MainScreen extends javax.swing.JFrame implements WritableGUI {
             }
         });
 
-        listenButton.setText("Listen to Port");
+        listenButton.setText("Start");
         listenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listenButtonActionPerformed(evt);
@@ -63,55 +67,71 @@ public class MainScreen extends javax.swing.JFrame implements WritableGUI {
 
         chat.setColumns(20);
         chat.setRows(5);
+        
+        JLabel lblNewLabel = new JLabel("Listen to:");
+        
+        JLabel lblPort = new JLabel("Port:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                        .addGroup(layout
-                                .createSequentialGroup()
-                                .addComponent(message, GroupLayout.PREFERRED_SIZE, 501, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(
-                                        ComponentPlacement.UNRELATED)
-                                .addComponent(sendButton, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE).addGap(8))
-                        .addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup().addComponent(listenButton)
-                                        .addPreferredGap(ComponentPlacement.RELATED)
-                                        .addComponent(receivePort, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                                        .addPreferredGap(ComponentPlacement.RELATED)
-                                        .addComponent(ipTextField, GroupLayout.PREFERRED_SIZE, 370,
-                                                GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(ComponentPlacement.RELATED).addComponent(targetPort,
-                                                GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-                                .addComponent(chat, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
-                                .addPreferredGap(ComponentPlacement.RELATED).addComponent(jScrollPane1,
-                                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap()));
+        layout.setHorizontalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(message, GroupLayout.PREFERRED_SIZE, 501, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(sendButton, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+        					.addGap(8))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(listenButton)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(layout.createSequentialGroup()
+        									.addPreferredGap(ComponentPlacement.UNRELATED)
+        									.addComponent(receivePort, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+        									.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+        									.addComponent(ipTextField, GroupLayout.PREFERRED_SIZE, 321, GroupLayout.PREFERRED_SIZE)
+        									.addGap(18)
+        									.addComponent(targetPort, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+        								.addGroup(layout.createSequentialGroup()
+        									.addGap(31)
+        									.addComponent(lblPort))))
+        						.addComponent(chat, GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap())
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(369)
+        			.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+        			.addGap(175))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup().addContainerGap()
-                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(ipTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(targetPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(listenButton)
-                                        .addComponent(receivePort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 233,
-                                                GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(chat, GroupLayout.PREFERRED_SIZE, 231,
-                                                GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
-                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(message, GroupLayout.PREFERRED_SIZE, 55,
-                                                GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(sendButton, GroupLayout.PREFERRED_SIZE, 39,
-                                                GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblNewLabel)
+        						.addComponent(lblPort))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(targetPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(receivePort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(ipTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        				.addComponent(listenButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(chat, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(message, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(sendButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         getContentPane().setLayout(layout);
 
         pack();
