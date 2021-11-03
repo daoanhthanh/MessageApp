@@ -16,7 +16,7 @@ import java.util.HashSet;
 public class MessageListener extends Thread {
 
     private ServerSocket server;
-    private int port; //default port
+    private int port; // default port
     private WritableGUI gui;
     private final int limit = 2;
 
@@ -36,12 +36,14 @@ public class MessageListener extends Thread {
         Set<String> vault = new HashSet<>();
         try {
             while ((clientSocket = server.accept()) != null) {
-            	InetSocketAddress sockaddr = (InetSocketAddress)clientSocket.getRemoteSocketAddress();
-            	sockaddr.getAddress();
-				String inaddr = InetAddress.getLocalHost().getHostAddress();
-				if(!vault.add(inaddr)) {
-					server.close();
-				}
+
+                // InetSocketAddress sockaddr =
+                // (InetSocketAddress)clientSocket.getRemoteSocketAddress();
+                // sockaddr.getAddress();
+                // String inaddr = InetAddress.getLocalHost().getHostAddress();
+                // if(!vault.add(inaddr)) {
+                // server.close();
+                // }
                 InputStream is = clientSocket.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String reply = br.readLine();
