@@ -32,7 +32,8 @@ public class MainScreen extends JFrame implements WritableGUI {
         ipTextField.setHorizontalAlignment(SwingConstants.CENTER);
         targetPort = new javax.swing.JTextField();
         targetPort.setHorizontalAlignment(SwingConstants.CENTER);
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane();
+        jScrollPane.setAutoscrolls(true);
         message = new javax.swing.JTextField();
         message.setHorizontalAlignment(SwingConstants.LEFT);
         sendButton = new javax.swing.JButton();
@@ -42,6 +43,8 @@ public class MainScreen extends JFrame implements WritableGUI {
         listenButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         receivePort = new javax.swing.JTextField();
         receivePort.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        jScrollPane.setViewportView(chat);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,30 +86,31 @@ public class MainScreen extends JFrame implements WritableGUI {
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(message, GroupLayout.PREFERRED_SIZE, 501, GroupLayout.PREFERRED_SIZE)
         					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(sendButton, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+        					.addComponent(sendButton, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
         					.addGap(8))
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addGroup(layout.createSequentialGroup()
-        							.addComponent(listenButton, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(listenButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+        							.addGap(18)
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addGroup(layout.createSequentialGroup()
+        								.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        									.addPreferredGap(ComponentPlacement.RELATED)
         									.addComponent(receivePort, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-        									.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+        									.addPreferredGap(ComponentPlacement.UNRELATED)
         									.addComponent(ipTextField, GroupLayout.PREFERRED_SIZE, 321, GroupLayout.PREFERRED_SIZE)
         									.addGap(18)
         									.addComponent(targetPort, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
         								.addGroup(layout.createSequentialGroup()
-        									.addGap(31)
+        									.addGap(18)
         									.addComponent(lblPort))))
-        						.addComponent(chat, GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
+        						.addComponent(chat, GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE))
         					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        					.addComponent(jScrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap())
         		.addGroup(layout.createSequentialGroup()
         			.addGap(369)
-        			.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+        			.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
         			.addGap(175))
         );
         layout.setVerticalGroup(
@@ -121,12 +125,12 @@ public class MainScreen extends JFrame implements WritableGUI {
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         						.addComponent(targetPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(receivePort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(ipTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        						.addComponent(ipTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(receivePort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         				.addComponent(listenButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jScrollPane, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)
         				.addComponent(chat, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
@@ -197,7 +201,7 @@ public class MainScreen extends JFrame implements WritableGUI {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea chat;
     private javax.swing.JTextField ipTextField;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JButton listenButton;
     private javax.swing.JTextField message;
     private javax.swing.JTextField receivePort;

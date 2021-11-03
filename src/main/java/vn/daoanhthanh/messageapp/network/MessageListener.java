@@ -25,14 +25,6 @@ public class MessageListener extends Thread {
         }
     }
 
-    public MessageListener() {
-        try {
-            server = new ServerSocket(port);
-        } catch (IOException ex) {
-            Logger.getLogger(MessageListener.class.getName()).log(Level.SEVERE, ex.getMessage());
-        }
-    }
-
     @Override
     public void run() {
         Socket clientSocket;

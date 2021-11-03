@@ -8,16 +8,16 @@ import java.util.logging.Logger;
 public class MessageTransmitter extends Thread {
 
     private String message;
-    private String hostname;
+    private String ipAddress;
     private int port;
     private WritableGUI gui;
 
     public MessageTransmitter() {
     }
 
-    public MessageTransmitter(String message, String hostname, int port, WritableGUI gui) {
+    public MessageTransmitter(String message, String ipAddress, int port, WritableGUI gui) {
         this.message = message;
-        this.hostname = hostname;
+        this.ipAddress = ipAddress;
         this.port = port;
         this.gui = gui;
     }
@@ -25,10 +25,10 @@ public class MessageTransmitter extends Thread {
     @Override
     public void run() {
         try {
-            Socket socket = new Socket(hostname, port);
+            Socket socket = new Socket(ipAddress, port);
             socket.getOutputStream().write(message.getBytes());
             if (message != null) {
-                gui.write("\t\tMe: " + message);
+                gui.write("\t\t\tMe: " + message);
             }
             socket.close();
         } catch (IOException ex) {
