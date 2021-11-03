@@ -32,7 +32,10 @@ public class MainScreen extends JFrame implements WritableGUI {
         ipTextField.setHorizontalAlignment(SwingConstants.CENTER);
         targetPort = new javax.swing.JTextField();
         targetPort.setHorizontalAlignment(SwingConstants.CENTER);
-        jScrollPane = new javax.swing.JScrollPane();
+//        jScrollPane = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane(chat,
+        		javax.swing.JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+        		javax.swing.JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane.setAutoscrolls(true);
         message = new javax.swing.JTextField();
         message.setHorizontalAlignment(SwingConstants.LEFT);
