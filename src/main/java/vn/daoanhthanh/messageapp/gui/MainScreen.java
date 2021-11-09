@@ -78,6 +78,7 @@ public class MainScreen extends JFrame implements WritableGUI {
 
         receivePort.setText("9981");
         chat = new javax.swing.JTextArea();
+        chat.setEditable(false);
 
         chat.setColumns(20);
         chat.setRows(5);
