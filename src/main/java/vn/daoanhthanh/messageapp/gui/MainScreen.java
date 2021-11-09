@@ -17,6 +17,11 @@ import java.awt.event.KeyEvent;
 public class MainScreen extends JFrame implements WritableGUI {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2738781633571359359L;
+
+	/**
      * Creates new form MainScreen
      */
     public MainScreen() {
