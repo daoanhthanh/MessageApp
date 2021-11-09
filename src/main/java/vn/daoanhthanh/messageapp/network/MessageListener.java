@@ -12,8 +12,10 @@ import java.util.logging.Logger;
 public class MessageListener extends Thread {
 
     private ServerSocket server;
-    private int port = 9981; //default port
+    private int port = 9981; // default port
     private WritableGUI gui;
+    private final Security security = new Security();
+    private final String secretKey = "NPR-secret_key";
 
     public MessageListener(WritableGUI gui, int port) {
         this.port = port;
@@ -42,6 +44,8 @@ public class MessageListener extends Thread {
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String reply = br.readLine();
                 if (reply != null) {
+                    gui.write("Encrypted message: " + reply);
+                    reply = security.decrypt(reply, secretKey);
                     gui.write("Re: " + reply);
                 }
             }

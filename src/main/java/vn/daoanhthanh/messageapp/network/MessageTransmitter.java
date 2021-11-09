@@ -11,6 +11,8 @@ public class MessageTransmitter extends Thread {
     private String hostname;
     private int port;
     private WritableGUI gui;
+    private final Security security = new Security();
+    private final String secretKey = "NPR-secret_key";
 
     public MessageTransmitter() {
     }
@@ -26,13 +28,17 @@ public class MessageTransmitter extends Thread {
     public void run() {
         try {
             Socket socket = new Socket(hostname, port);
-            socket.getOutputStream().write(message.getBytes());
-            if (message != null) {
+            if (!message.isBlank()) {
                 gui.write("\t\tMe: " + message);
+                // encrypt message
+                // String encryptedmsg = security.encrypt("(secure) " + message, secretKey);
+                String encryptedmsg = security.encrypt(message, secretKey);
+                // send encrypted message
+                socket.getOutputStream().write(encryptedmsg.getBytes());
             }
             socket.close();
         } catch (IOException ex) {
-            Logger.getLogger(MessageTransmitter.class.getName()).log(Level.SEVERE, ex.getMessage());
+            Logger.getLogger(MessageTransmitter.class.getName()).log(Level.SEVERE, "line 41 " + ex.getMessage());
         }
     }
 }
