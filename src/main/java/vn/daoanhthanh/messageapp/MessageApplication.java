@@ -1,10 +1,10 @@
 package vn.daoanhthanh.messageapp;
 
-import vn.daoanhthanh.messageapp.gui.MainScreen;
+import vn.daoanhthanh.messageapp.gui.ScreenGUI;
 
 public class MessageApplication {
     public static void main(String[] args) {
-        MainScreen screen = new MainScreen();
-        screen.setVisible(true);
+        ScreenGUI screenGUI = new ScreenGUI();
+        screenGUI.setVisible(true);
     }
 }
