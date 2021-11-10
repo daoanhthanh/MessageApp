@@ -12,24 +12,20 @@ import java.util.logging.Logger;
 public class MessageListener extends Thread {
 
     private ServerSocket server;
-    private int port = 9981; // default port
     private WritableGUI gui;
     private final Security security = new Security();
     private final String secretKey = "NPR-secret_key";
 
     public MessageListener(WritableGUI gui, int port) {
-        this.port = port;
+        // InetAddress localAddress = null;
+        // try {
+        // localAddress = InetAddress.getLocalHost();
+        // } catch (UnknownHostException e) {
+        // e.printStackTrace();
+        // }
         this.gui = gui;
         try {
-            server = new ServerSocket(port);
-        } catch (IOException ex) {
-            Logger.getLogger(MessageListener.class.getName()).log(Level.SEVERE, ex.getMessage());
-        }
-    }
-
-    public MessageListener() {
-        try {
-            server = new ServerSocket(port);
+            server = new ServerSocket(port, 2);
         } catch (IOException ex) {
             Logger.getLogger(MessageListener.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
