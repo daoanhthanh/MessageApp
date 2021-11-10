@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vn.daoanhthanh.messageapp.gui;
 
 import java.awt.Color;
@@ -11,6 +6,8 @@ import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -23,8 +20,8 @@ import vn.daoanhthanh.messageapp.network.MessageTransmitter;
 import vn.daoanhthanh.messageapp.network.WritableGUI;
 
 /**
- *
- * @author ADMIN
+ * @author Dao Anh Thanh
+ * @version 1.1
  */
 public class ScreenGUI extends javax.swing.JFrame implements WritableGUI {
 
@@ -113,7 +110,15 @@ public class ScreenGUI extends javax.swing.JFrame implements WritableGUI {
         startButton.setText("Start");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listenButtonActionPerformed(evt);
+                try {
+                    listenButtonActionPerformed(evt);
+                } catch (NumberFormatException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (UnknownHostException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -197,14 +202,16 @@ public class ScreenGUI extends javax.swing.JFrame implements WritableGUI {
 
     MessageListener listener;
 
-    private void listenButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_listenbuttonActionPerformed
-        listener = new MessageListener(this, Integer.parseInt(port.getText()));
+    private void listenButtonActionPerformed(java.awt.event.ActionEvent evt)
+            throws NumberFormatException, UnknownHostException {// GEN-FIRST:event_listenbuttonActionPerformed
+        listener = new MessageListener(this, Integer.parseInt(port.getText().trim()),
+                InetAddress.getByName(ipAddress.getText().trim()));
         listener.start();
     }// GEN-LAST:event_listenbuttonActionPerformed
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_sendbuttonActionPerformed
-        MessageTransmitter transmitter = new MessageTransmitter(msgField.getText(), ipAddress.getText(),
-                Integer.parseInt(targetPort.getText()), this);
+        MessageTransmitter transmitter = new MessageTransmitter(msgField.getText(), ipAddress.getText().trim(),
+                Integer.parseInt(targetPort.getText().trim()), this);
         transmitter.start();
         msgField.setText("");
     }// GEN-LAST:event_sendbuttonActionPerformed

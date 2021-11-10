@@ -5,6 +5,12 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import vn.daoanhthanh.messageapp.utils.BlockTransmitter;
+
+/**
+ * @author Dao Anh Thanh
+ * @version 1.1
+ */
 public class MessageTransmitter extends Thread {
 
     private String message;
@@ -26,19 +32,21 @@ public class MessageTransmitter extends Thread {
 
     @Override
     public void run() {
-        try {
-            Socket socket = new Socket(hostname, port);
-            if (!message.isBlank()) {
-                gui.write("\t\tMe: " + message);
-                // encrypt message
-                // String encryptedmsg = security.encrypt("(secure) " + message, secretKey);
-                String encryptedmsg = security.encrypt(message, secretKey);
-                // send encrypted message
-                socket.getOutputStream().write(encryptedmsg.getBytes());
+        if (!BlockTransmitter.needBlock) {
+            try {
+                Socket socket = new Socket(hostname, port);
+                if (!message.isBlank()) {
+                    gui.write("\t\tMe: " + message);
+                    // encrypt message
+                    // String encryptedmsg = security.encrypt("(secure) " + message, secretKey);
+                    String encryptedmsg = security.encrypt(message, secretKey);
+                    // send encrypted message
+                    socket.getOutputStream().write(encryptedmsg.getBytes());
+                }
+                socket.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MessageTransmitter.class.getName()).log(Level.SEVERE, "line 41 " + ex.getMessage());
             }
-            socket.close();
-        } catch (IOException ex) {
-            Logger.getLogger(MessageTransmitter.class.getName()).log(Level.SEVERE, "line 41 " + ex.getMessage());
         }
     }
 }

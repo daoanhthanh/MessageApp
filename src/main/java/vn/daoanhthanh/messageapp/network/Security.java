@@ -9,6 +9,10 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * @author Dao Anh Thanh
+ * @version 1.1
+ */
 public class Security {
     private static SecretKeySpec secretKey;
     private static byte[] key;
