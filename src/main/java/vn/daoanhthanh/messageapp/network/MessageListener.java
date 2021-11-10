@@ -9,6 +9,12 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import vn.daoanhthanh.messageapp.utils.BlockTransmitter;
+
+/**
+ * @author Dao Anh Thanh
+ * @version 1.1
+ */
 public class MessageListener extends Thread {
 
     private ServerSocket server;
@@ -25,7 +31,7 @@ public class MessageListener extends Thread {
         // }
         this.gui = gui;
         try {
-            server = new ServerSocket(port, 2);
+            server = new ServerSocket(port, 1);
         } catch (IOException ex) {
             Logger.getLogger(MessageListener.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
@@ -35,6 +41,9 @@ public class MessageListener extends Thread {
     public void run() {
         Socket clientSocket;
         try {
+            if (server == null) {
+                BlockTransmitter.needBlock = true;
+            }
             while ((clientSocket = server.accept()) != null) {
                 InputStream is = clientSocket.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));

@@ -17,6 +17,10 @@ import vn.daoanhthanh.messageapp.network.MessageListener;
 import vn.daoanhthanh.messageapp.network.MessageTransmitter;
 import vn.daoanhthanh.messageapp.network.WritableGUI;
 
+/**
+ * @author Dao Anh Thanh
+ * @version 1.1
+ */
 public class ScreenGUI extends javax.swing.JFrame implements WritableGUI {
 
     /**
@@ -25,8 +29,6 @@ public class ScreenGUI extends javax.swing.JFrame implements WritableGUI {
     public ScreenGUI() {
         initComponents();
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
